@@ -1,4 +1,4 @@
-export const dummyData = [
+export const dummyData: RecordBlockType[] = [
   {
     name: '日記',
     topics: [
@@ -71,3 +71,63 @@ export const dummyData = [
     ],
   },
 ]
+
+export type RecordBlockType = {
+  name: string
+  topics: TopicType[]
+}
+
+type TopicType = {
+  name: string | null
+  contents: ContentType[]
+}
+
+type ContentType =
+  | TextContentType
+  | IntegerContentType
+  | FloatContentType
+  | MultiLevelContentType
+  | BinaryContentType
+  | TimeContentType
+
+type TextContentType = {
+  type: 'text'
+  name: string | null
+  value: string
+}
+
+type IntegerContentType = {
+  type: 'integer'
+  name: string | null
+  value: number
+}
+
+type FloatContentType = {
+  type: 'float'
+  name: string | null
+  value: number
+}
+
+type MultiLevelContentType = {
+  type: 'multiLevel'
+  name: string | null
+  minNum: number
+  maxNum: number
+  leftLabel: string
+  rightLabel: string
+  value: number
+}
+
+type BinaryContentType = {
+  type: 'binary'
+  name: string | null
+  truthLabel: string
+  falseLabel: string
+  value: boolean
+}
+
+type TimeContentType = {
+  type: 'time'
+  name: string | null
+  value: Date
+}
