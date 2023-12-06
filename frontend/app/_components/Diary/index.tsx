@@ -1,6 +1,6 @@
-import { Box, VStack, Heading } from '@chakra-ui/react'
+import { VStack, Heading } from '@chakra-ui/react'
 import { dummyData } from '../../dummyData'
-// import RecordBlock from './_components/RecordBlock'
+import RecordBlock from './RecordBlock'
 
 type Props = {
   date: Date
@@ -19,8 +19,7 @@ const Diary = ({ date }: Props) => {
     <VStack spacing={4}>
       <Heading as="h2">{dateStr}</Heading>
       {recordBlocks.map((recordBlock, index) => (
-        <Box>{recordBlock.name}</Box>
-        // <RecordBlock key={`record-block-${index}`} recordBlock={recordBlock} />
+        <RecordBlock key={`record-block-${index}`} recordBlock={recordBlock} />
       ))}
     </VStack>
   )
