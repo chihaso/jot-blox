@@ -1,0 +1,21 @@
+{
+  "name": "jot-blox-dev",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "customizations": {
+    "vscode": {
+      // Add the IDs of extensions you want installed when the container is created.
+      "extensions": [
+        "Shopify.ruby-lsp",
+        "Hridoy.rails-snippets",
+        "castwide.solargraph",
+        "misogi.ruby-rubocop",
+        "kaiwood.endwise",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "streetsidesoftware.code-spell-checker"
+      ]
+    }
+  }
+}
