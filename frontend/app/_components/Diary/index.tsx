@@ -16,7 +16,7 @@ const Diary = ({ date }: Props) => {
   })
 
   return (
-    <VStack spacing={4}>
+    <VStack spacing={4} align="start">
       <Heading as="h2">{dateStr}</Heading>
       {recordBlocks.map((recordBlock, index) => (
         <RecordBlock key={`record-block-${index}`} recordBlock={recordBlock} />

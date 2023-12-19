@@ -17,9 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Providers>
           <Header />
-          <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            {children}
-          </main>
+          <main className="mt-24 mx-auto w-4/5">{children}</main>
         </Providers>
       </body>
     </html>

@@ -23,10 +23,10 @@ const RecordBlock = ({ recordBlock }: Props) => {
     <Box>
       <Heading as="h3">{recordBlock.name}</Heading>
       {recordBlock.topics.map((topic, index) => (
-        <Box key={`${recordBlock.name}-${index}`}>
+        <Box key={`${recordBlock.name}-${index}`} ml="24px">
           <Heading as="h4">{topic.name}</Heading>
           {topic.contents.map((content, index) => (
-            <Box key={`${recordBlock.name}-${topic.name}-${index}`}>
+            <Box key={`${recordBlock.name}-${topic.name}-${index}`} ml="24px">
               <Box>{content.type}</Box>
               <Box>{content.name}</Box>
               <Box>{content.value.toString()}</Box>
