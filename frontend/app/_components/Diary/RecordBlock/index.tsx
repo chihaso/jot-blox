@@ -29,7 +29,7 @@ const RecordBlock = ({ recordBlock }: Props) => {
             <Box key={`${recordBlock.name}-${topic.name}-${index}`} ml="24px">
               <Box>{content.type}</Box>
               <Box>{content.name}</Box>
-              <Box>{content.value.toString()}</Box>
+              <Box>{content.value?.toString()}</Box>
             </Box>
           ))}
         </Box>

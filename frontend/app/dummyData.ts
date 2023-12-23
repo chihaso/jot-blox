@@ -77,12 +77,12 @@ export type RecordBlockType = {
   topics: TopicType[]
 }
 
-type TopicType = {
+export type TopicType = {
   name: string | null
   contents: ContentType[]
 }
 
-type ContentType =
+export type ContentType =
   | TextContentType
   | IntegerContentType
   | FloatContentType
@@ -93,19 +93,19 @@ type ContentType =
 type TextContentType = {
   type: 'text'
   name: string | null
-  value: string
+  value?: string
 }
 
 type IntegerContentType = {
   type: 'integer'
   name: string | null
-  value: number
+  value?: number
 }
 
 type FloatContentType = {
   type: 'float'
   name: string | null
-  value: number
+  value?: number
 }
 
 type MultiLevelContentType = {
@@ -115,7 +115,7 @@ type MultiLevelContentType = {
   maxNum: number
   leftLabel: string
   rightLabel: string
-  value: number
+  value?: number
 }
 
 type BinaryContentType = {
@@ -123,11 +123,11 @@ type BinaryContentType = {
   name: string | null
   truthLabel: string
   falseLabel: string
-  value: boolean
+  value?: boolean
 }
 
 type TimeContentType = {
   type: 'time'
   name: string | null
-  value: Date
+  value?: Date
 }
