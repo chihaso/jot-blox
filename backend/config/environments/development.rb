@@ -77,4 +77,12 @@ Rails.application.configure do
       system("bundle exec rubocop -A --fail-level=E #{parsable_files.shelljoin}", exception: true)
     end
   end
+
+  config.generators do |g|
+    g.helper false
+    g.controller_specs false
+    g.helper_specs false
+    g.routing_specs false
+    g.request_specs false
+  end 
 end
