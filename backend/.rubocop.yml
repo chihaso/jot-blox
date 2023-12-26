@@ -15,6 +15,7 @@ AllCops:
     - "tmp/**/*"
     - "config.ru"
     - "Rakefile"
+  NewCops: enable
 
 Style/Documentation:
   Enabled: false
