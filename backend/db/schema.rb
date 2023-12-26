@@ -10,14 +10,69 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_084213) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_085905) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "binary_contents", force: :cascade do |t|
+    t.string "name"
+    t.string "false_label", null: false
+    t.string "true_label", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_binary_contents_on_topic_id"
+  end
+
+  create_table "date_time_contents", force: :cascade do |t|
+    t.string "name"
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_date_time_contents_on_topic_id"
+  end
+
+  create_table "float_contents", force: :cascade do |t|
+    t.string "name"
+    t.string "unit"
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_float_contents_on_topic_id"
+  end
+
+  create_table "integer_contents", force: :cascade do |t|
+    t.string "name"
+    t.string "unit"
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_integer_contents_on_topic_id"
+  end
+
+  create_table "multi_level_contents", force: :cascade do |t|
+    t.string "name"
+    t.string "left_label", null: false
+    t.string "right_label", null: false
+    t.integer "size", null: false
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_multi_level_contents_on_topic_id"
+  end
 
   create_table "record_blocks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "text_contents", force: :cascade do |t|
+    t.string "name"
+    t.bigint "topic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_text_contents_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -28,5 +83,11 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_084213) do
     t.index ["record_block_id"], name: "index_topics_on_record_block_id"
   end
 
+  add_foreign_key "binary_contents", "topics"
+  add_foreign_key "date_time_contents", "topics"
+  add_foreign_key "float_contents", "topics"
+  add_foreign_key "integer_contents", "topics"
+  add_foreign_key "multi_level_contents", "topics"
+  add_foreign_key "text_contents", "topics"
   add_foreign_key "topics", "record_blocks"
 end
