@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_230048) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -46,6 +46,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_230048) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["date_time_content_id"], name: "index_date_time_values_on_date_time_content_id"
+  end
+
+  create_table "entries", force: :cascade do |t|
+    t.date "record_date"
+    t.bigint "record_block_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["record_block_id"], name: "index_entries_on_record_block_id"
   end
 
   create_table "float_contents", force: :cascade do |t|
@@ -135,6 +143,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_230048) do
   add_foreign_key "binary_values", "binary_contents"
   add_foreign_key "date_time_contents", "topics"
   add_foreign_key "date_time_values", "date_time_contents"
+  add_foreign_key "entries", "record_blocks"
   add_foreign_key "float_contents", "topics"
   add_foreign_key "float_values", "float_contents"
   add_foreign_key "integer_contents", "topics"
