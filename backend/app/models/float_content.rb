@@ -2,4 +2,5 @@
 
 class FloatContent < ApplicationRecord
   belongs_to :topic
+  has_many :float_values, dependent: :destroy
 end
