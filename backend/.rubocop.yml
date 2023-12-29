@@ -19,3 +19,9 @@ AllCops:
 
 Style/Documentation:
   Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false

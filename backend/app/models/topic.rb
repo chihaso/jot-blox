@@ -8,4 +8,18 @@ class Topic < ApplicationRecord
   has_many :float_contents, dependent: :destroy
   has_many :text_contents, dependent: :destroy
   has_many :date_time_contents, dependent: :destroy
+
+  def settings
+    {
+      id:,
+      name:,
+      contents: contents.map(&:settings)
+    }
+  end
+
+  private
+
+  def contents
+    multi_level_contents + binary_contents + integer_contents + float_contents + text_contents + date_time_contents
+  end
 end
