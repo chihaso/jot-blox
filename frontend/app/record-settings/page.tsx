@@ -1,60 +1,21 @@
 'use client'
 
 import { Button, Heading, VStack } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import RecordBlockForm from './RecordBlockForm'
 import { ContentType, RecordBlockType, TopicType } from '../dummyData'
+import { useAPIRequest } from '../_hooks/useAPIRequest'
 
 export default function BlocksSetting() {
-  const [recordBlocks, setRecordBlocks] = useState<RecordBlockType[]>([
-    {
-      name: '日記',
-      topics: [
-        {
-          name: null,
-          contents: [
-            {
-              name: null,
-              type: 'text',
-            },
-          ],
-        },
-      ],
-    },
-    {
-      name: 'ビビの記録',
-      topics: [
-        {
-          name: 'おしっこ',
-          contents: [
-            {
-              name: '回数',
-              type: 'integer',
-            },
-          ],
-        },
-        {
-          name: 'うんち',
-          contents: [
-            {
-              name: '量',
-              type: 'multiLevel',
-              size: 10,
-              left_label: '少ない',
-              right_label: '多い',
-            },
-            {
-              name: '毛量',
-              type: 'multiLevel',
-              size: 4,
-              left_label: '少ない',
-              right_label: '多い',
-            },
-          ],
-        },
-      ],
-    },
-  ])
+  const { get } = useAPIRequest()
+
+  const [recordBlocks, setRecordBlocks] = useState<RecordBlockType[]>([])
+
+  useEffect(() => {
+    get<RecordBlockType[]>('/record_settings').then((res) => {
+      setRecordBlocks(res)
+    })
+  }, [])
 
   const updateBlock = (blockIndex: number, newBlock: RecordBlockType): void => {
     setRecordBlocks((prevBlocks) => {
