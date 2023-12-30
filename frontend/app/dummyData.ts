@@ -51,19 +51,17 @@ export const dummyData: RecordBlockType[] = [
           {
             name: '量',
             type: 'multiLevel',
-            minNum: 0,
-            maxNum: 10,
-            leftLabel: '少ない',
-            rightLabel: '多い',
+            size: 10,
+            left_label: '少ない',
+            right_label: '多い',
             value: 5,
           },
           {
             name: '毛量',
             type: 'multiLevel',
-            minNum: 0,
-            maxNum: 4,
-            leftLabel: '少ない',
-            rightLabel: '多い',
+            size: 4,
+            left_label: '少ない',
+            right_label: '多い',
             value: 3,
           },
         ],
@@ -111,18 +109,17 @@ type FloatContentType = {
 type MultiLevelContentType = {
   type: 'multiLevel'
   name: string | null
-  minNum: number
-  maxNum: number
-  leftLabel: string
-  rightLabel: string
+  size: number
+  left_label: string
+  right_label: string
   value?: number
 }
 
 type BinaryContentType = {
   type: 'binary'
   name: string | null
-  truthLabel: string
-  falseLabel: string
+  true_label: string
+  false_label: string
   value?: boolean
 }
 
