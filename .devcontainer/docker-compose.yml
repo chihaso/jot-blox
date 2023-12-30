@@ -10,6 +10,10 @@ services:
       - ..:/workspace
       - jot-blox-node-modules:/workspace/frontend/node_modules
 
+    environment:
+      FRONTEND_URL: localhost:3000
+      NEXT_PUBLIC_BACKEND_URL: http://localhost:3001
+
     command: sleep infinity
 
   db:
