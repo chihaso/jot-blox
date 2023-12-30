@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_30_232306) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,7 +29,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "binary_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
     t.index ["binary_content_id"], name: "index_binary_values_on_binary_content_id"
+    t.index ["entries_id"], name: "index_binary_values_on_entries_id"
   end
 
   create_table "date_time_contents", force: :cascade do |t|
@@ -45,7 +47,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "date_time_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
     t.index ["date_time_content_id"], name: "index_date_time_values_on_date_time_content_id"
+    t.index ["entries_id"], name: "index_date_time_values_on_entries_id"
   end
 
   create_table "entries", force: :cascade do |t|
@@ -70,6 +74,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "float_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
+    t.index ["entries_id"], name: "index_float_values_on_entries_id"
     t.index ["float_content_id"], name: "index_float_values_on_float_content_id"
   end
 
@@ -87,6 +93,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "integer_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
+    t.index ["entries_id"], name: "index_integer_values_on_entries_id"
     t.index ["integer_content_id"], name: "index_integer_values_on_integer_content_id"
   end
 
@@ -106,6 +114,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "multi_level_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
+    t.index ["entries_id"], name: "index_multi_level_values_on_entries_id"
     t.index ["multi_level_content_id"], name: "index_multi_level_values_on_multi_level_content_id"
   end
 
@@ -128,6 +138,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
     t.bigint "text_content_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "entries_id"
+    t.index ["entries_id"], name: "index_text_values_on_entries_id"
     t.index ["text_content_id"], name: "index_text_values_on_text_content_id"
   end
 
@@ -141,16 +153,22 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_26_231633) do
 
   add_foreign_key "binary_contents", "topics"
   add_foreign_key "binary_values", "binary_contents"
+  add_foreign_key "binary_values", "entries", column: "entries_id"
   add_foreign_key "date_time_contents", "topics"
   add_foreign_key "date_time_values", "date_time_contents"
+  add_foreign_key "date_time_values", "entries", column: "entries_id"
   add_foreign_key "entries", "record_blocks"
   add_foreign_key "float_contents", "topics"
+  add_foreign_key "float_values", "entries", column: "entries_id"
   add_foreign_key "float_values", "float_contents"
   add_foreign_key "integer_contents", "topics"
+  add_foreign_key "integer_values", "entries", column: "entries_id"
   add_foreign_key "integer_values", "integer_contents"
   add_foreign_key "multi_level_contents", "topics"
+  add_foreign_key "multi_level_values", "entries", column: "entries_id"
   add_foreign_key "multi_level_values", "multi_level_contents"
   add_foreign_key "text_contents", "topics"
+  add_foreign_key "text_values", "entries", column: "entries_id"
   add_foreign_key "text_values", "text_contents"
   add_foreign_key "topics", "record_blocks"
 end
