@@ -2,10 +2,10 @@
 
 class Entry < ApplicationRecord
   belongs_to :record_block
-  has_many :multi_level_values, dependent: :destroy
-  has_many :binary_values, dependent: :destroy
-  has_many :text_values, dependent: :destroy
-  has_many :integer_values, dependent: :destroy
-  has_many :float_values, dependent: :destroy
-  has_many :date_time_values, dependent: :destroy
+  has_many :multi_level_values, dependent: :destroy, inverse_of: :entry
+  has_many :binary_values, dependent: :destroy, inverse_of: :entry
+  has_many :text_values, dependent: :destroy, inverse_of: :entry
+  has_many :integer_values, dependent: :destroy, inverse_of: :entry
+  has_many :float_values, dependent: :destroy, inverse_of: :entry
+  has_many :date_time_values, dependent: :destroy, inverse_of: :entry
 end
