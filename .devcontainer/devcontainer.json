@@ -8,8 +8,6 @@
       "extensions": [
         "Shopify.ruby-lsp",
         "Hridoy.rails-snippets",
-        "castwide.solargraph",
-        "misogi.ruby-rubocop",
         "kaiwood.endwise",
         "dbaeumer.vscode-eslint",
         "esbenp.prettier-vscode",
