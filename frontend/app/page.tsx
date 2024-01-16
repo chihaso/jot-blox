@@ -1,7 +1,8 @@
 'use client'
 
-import Diary from './_components/Diary'
+import { useRouter } from 'next/navigation'
 
 export default function Home() {
-  return <Diary date={new Date()} />
+  const router = useRouter()
+  router.push('/daily-record')
 }

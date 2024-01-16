@@ -1,12 +1,12 @@
 import { VStack, Heading } from '@chakra-ui/react'
-import { dummyData } from '../../dummyData'
+import { dummyData } from '../dummyData'
 import RecordBlock from './RecordBlock'
 
 type Props = {
   date: Date
 }
 
-const Diary = ({ date }: Props) => {
+const DailyRecord = ({ date = new Date() }: Props) => {
   const recordBlocks = dummyData
   const dateStr = date.toLocaleDateString('ja-JP', {
     year: 'numeric',
@@ -25,4 +25,4 @@ const Diary = ({ date }: Props) => {
   )
 }
 
-export default Diary
+export default DailyRecord
