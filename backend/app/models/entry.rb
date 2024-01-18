@@ -9,7 +9,22 @@ class Entry < ApplicationRecord
   has_many :float_values, dependent: :destroy, inverse_of: :entry
   has_many :date_time_values, dependent: :destroy, inverse_of: :entry
 
-  def values
-    multi_level_values + binary_values + text_values + integer_values + float_values + date_time_values
+  # TODO: Add Tests
+  def daily_record
+    {
+      name: record_block.name,
+      topics: record_block.settings[:topics].each do |topic|
+        topic[:contents].each do |content|
+          content.merge!({ value: find_value!(content).value })
+        end
+      end
+    }
+  end
+
+  private
+
+  # TODO: This is a bit of a hack. We should probably have a polymorphic
+  def find_value!(content_hash)
+    send("#{content_hash[:type]}_values").find_by!("#{content_hash[:type]}_content_id": content_hash[:id])
   end
 end
