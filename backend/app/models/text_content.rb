@@ -2,7 +2,7 @@
 
 class TextContent < ApplicationRecord
   belongs_to :topic
-  has_many :text_values, dependent: :destroy
+  has_many :values, class_name: 'TextValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {

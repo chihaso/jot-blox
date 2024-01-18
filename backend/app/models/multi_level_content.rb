@@ -2,7 +2,7 @@
 
 class MultiLevelContent < ApplicationRecord
   belongs_to :topic
-  has_many :multi_level_values, dependent: :destroy
+  has_many :values, class_name: 'MultiLevelValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {

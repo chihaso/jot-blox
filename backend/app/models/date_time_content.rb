@@ -2,7 +2,7 @@
 
 class DateTimeContent < ApplicationRecord
   belongs_to :topic
-  has_many :date_time_values, dependent: :destroy
+  has_many :values, class_name: 'DateTimeValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {

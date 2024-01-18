@@ -2,7 +2,7 @@
 
 class FloatContent < ApplicationRecord
   belongs_to :topic
-  has_many :float_values, dependent: :destroy
+  has_many :values, class_name: 'FloatValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {

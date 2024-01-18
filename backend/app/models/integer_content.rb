@@ -2,7 +2,7 @@
 
 class IntegerContent < ApplicationRecord
   belongs_to :topic
-  has_many :integer_values, dependent: :destroy
+  has_many :values, class_name: 'IntegerValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {

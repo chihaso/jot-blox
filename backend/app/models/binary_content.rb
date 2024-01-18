@@ -2,7 +2,7 @@
 
 class BinaryContent < ApplicationRecord
   belongs_to :topic
-  has_many :binary_values, dependent: :destroy
+  has_many :values, class_name: 'BinaryValue', inverse_of: :content, dependent: :destroy
 
   def settings
     {
