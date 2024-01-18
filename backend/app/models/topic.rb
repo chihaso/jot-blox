@@ -17,8 +17,6 @@ class Topic < ApplicationRecord
     }
   end
 
-  private
-
   def contents
     multi_level_contents + binary_contents + integer_contents + float_contents + text_contents + date_time_contents
   end

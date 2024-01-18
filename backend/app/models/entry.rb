@@ -8,4 +8,8 @@ class Entry < ApplicationRecord
   has_many :integer_values, dependent: :destroy, inverse_of: :entry
   has_many :float_values, dependent: :destroy, inverse_of: :entry
   has_many :date_time_values, dependent: :destroy, inverse_of: :entry
+
+  def values
+    multi_level_values + binary_values + text_values + integer_values + float_values + date_time_values
+  end
 end
