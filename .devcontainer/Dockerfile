@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/ruby
+FROM mcr.microsoft.com/devcontainers/ruby:3.2
 
 # frontend
 WORKDIR /workspace/frontend
