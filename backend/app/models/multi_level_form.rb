@@ -1,8 +1,9 @@
 # frozen_string_literal: true
 
-class MultiLevelContent < ApplicationRecord
-  belongs_to :topic
-  has_many :values, class_name: 'MultiLevelValue', inverse_of: :content, dependent: :destroy
+class MultiLevelForm < ApplicationRecord
+  include Form
+
+  has_many :values, class_name: 'MultiLevelValue', inverse_of: :form, dependent: :destroy
 
   def settings
     {

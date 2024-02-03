@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
 class BinaryValue < ApplicationRecord
-  belongs_to :content, class_name: 'BinaryContent', foreign_key: :binary_content_id, inverse_of: :values
-  belongs_to :entry, foreign_key: :entries_id, inverse_of: :binary_values
+  belongs_to :form, class_name: 'BinaryForm', foreign_key: :binary_form_id, inverse_of: :values
 end

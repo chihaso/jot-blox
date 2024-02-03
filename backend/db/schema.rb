@@ -10,165 +10,144 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_31_000926) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_26_230048) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "binary_contents", force: :cascade do |t|
-    t.string "name"
-    t.string "false_label", null: false
+  create_table "binary_forms", force: :cascade do |t|
     t.string "true_label", null: false
-    t.bigint "topic_id", null: false
+    t.string "false_label", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_binary_contents_on_topic_id"
   end
 
   create_table "binary_values", force: :cascade do |t|
     t.boolean "value"
-    t.bigint "binary_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "binary_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["binary_content_id"], name: "index_binary_values_on_binary_content_id"
-    t.index ["entries_id"], name: "index_binary_values_on_entries_id"
+    t.index ["binary_form_id"], name: "index_binary_values_on_binary_form_id"
+    t.index ["record_date", "binary_form_id"], name: "index_binary_values_on_record_date_and_binary_form_id", unique: true
   end
 
-  create_table "date_time_contents", force: :cascade do |t|
+  create_table "contents", force: :cascade do |t|
     t.string "name"
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
     t.bigint "topic_id", null: false
+    t.string "form_type"
+    t.bigint "form_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_date_time_contents_on_topic_id"
+    t.index ["form_type", "form_id"], name: "index_contents_on_form"
+    t.index ["topic_id"], name: "index_contents_on_topic_id"
+  end
+
+  create_table "date_time_forms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "date_time_values", force: :cascade do |t|
     t.datetime "value"
-    t.bigint "date_time_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "date_time_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["date_time_content_id"], name: "index_date_time_values_on_date_time_content_id"
-    t.index ["entries_id"], name: "index_date_time_values_on_entries_id"
+    t.index ["date_time_form_id"], name: "index_date_time_values_on_date_time_form_id"
+    t.index ["record_date", "date_time_form_id"], name: "index_date_time_values_on_record_date_and_date_time_form_id", unique: true
   end
 
-  create_table "entries", force: :cascade do |t|
-    t.date "record_date"
-    t.bigint "record_block_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["record_block_id"], name: "index_entries_on_record_block_id"
-  end
-
-  create_table "float_contents", force: :cascade do |t|
-    t.string "name"
+  create_table "float_forms", force: :cascade do |t|
     t.string "unit"
-    t.bigint "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_float_contents_on_topic_id"
   end
 
   create_table "float_values", force: :cascade do |t|
     t.float "value"
-    t.bigint "float_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "float_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["entries_id"], name: "index_float_values_on_entries_id"
-    t.index ["float_content_id"], name: "index_float_values_on_float_content_id"
+    t.index ["float_form_id"], name: "index_float_values_on_float_form_id"
+    t.index ["record_date", "float_form_id"], name: "index_float_values_on_record_date_and_float_form_id", unique: true
   end
 
-  create_table "integer_contents", force: :cascade do |t|
-    t.string "name"
+  create_table "integer_forms", force: :cascade do |t|
     t.string "unit"
-    t.bigint "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_integer_contents_on_topic_id"
   end
 
   create_table "integer_values", force: :cascade do |t|
     t.integer "value"
-    t.bigint "integer_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "integer_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["entries_id"], name: "index_integer_values_on_entries_id"
-    t.index ["integer_content_id"], name: "index_integer_values_on_integer_content_id"
+    t.index ["integer_form_id"], name: "index_integer_values_on_integer_form_id"
+    t.index ["record_date", "integer_form_id"], name: "index_integer_values_on_record_date_and_integer_form_id", unique: true
   end
 
-  create_table "multi_level_contents", force: :cascade do |t|
-    t.string "name"
+  create_table "multi_level_forms", force: :cascade do |t|
     t.string "left_label", null: false
     t.string "right_label", null: false
     t.integer "size", null: false
-    t.bigint "topic_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_multi_level_contents_on_topic_id"
   end
 
   create_table "multi_level_values", force: :cascade do |t|
     t.integer "value"
-    t.bigint "multi_level_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "multi_level_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["entries_id"], name: "index_multi_level_values_on_entries_id"
-    t.index ["multi_level_content_id"], name: "index_multi_level_values_on_multi_level_content_id"
+    t.index ["multi_level_form_id"], name: "index_multi_level_values_on_multi_level_form_id"
+    t.index ["record_date", "multi_level_form_id"], name: "idx_on_record_date_multi_level_form_id_ffd2677cfb", unique: true
   end
 
   create_table "record_blocks", force: :cascade do |t|
     t.string "name"
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "text_contents", force: :cascade do |t|
-    t.string "name"
-    t.bigint "topic_id", null: false
+  create_table "text_forms", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_text_contents_on_topic_id"
   end
 
   create_table "text_values", force: :cascade do |t|
     t.text "value"
-    t.bigint "text_content_id", null: false
+    t.date "record_date", null: false
+    t.bigint "text_form_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "entries_id"
-    t.index ["entries_id"], name: "index_text_values_on_entries_id"
-    t.index ["text_content_id"], name: "index_text_values_on_text_content_id"
+    t.index ["record_date", "text_form_id"], name: "index_text_values_on_record_date_and_text_form_id", unique: true
+    t.index ["text_form_id"], name: "index_text_values_on_text_form_id"
   end
 
   create_table "topics", force: :cascade do |t|
     t.string "name"
+    t.datetime "start_date", null: false
+    t.datetime "end_date"
     t.bigint "record_block_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["record_block_id"], name: "index_topics_on_record_block_id"
   end
 
-  add_foreign_key "binary_contents", "topics"
-  add_foreign_key "binary_values", "binary_contents"
-  add_foreign_key "binary_values", "entries", column: "entries_id"
-  add_foreign_key "date_time_contents", "topics"
-  add_foreign_key "date_time_values", "date_time_contents"
-  add_foreign_key "date_time_values", "entries", column: "entries_id"
-  add_foreign_key "entries", "record_blocks"
-  add_foreign_key "float_contents", "topics"
-  add_foreign_key "float_values", "entries", column: "entries_id"
-  add_foreign_key "float_values", "float_contents"
-  add_foreign_key "integer_contents", "topics"
-  add_foreign_key "integer_values", "entries", column: "entries_id"
-  add_foreign_key "integer_values", "integer_contents"
-  add_foreign_key "multi_level_contents", "topics"
-  add_foreign_key "multi_level_values", "entries", column: "entries_id"
-  add_foreign_key "multi_level_values", "multi_level_contents"
-  add_foreign_key "text_contents", "topics"
-  add_foreign_key "text_values", "entries", column: "entries_id"
-  add_foreign_key "text_values", "text_contents"
+  add_foreign_key "binary_values", "binary_forms"
+  add_foreign_key "contents", "topics"
+  add_foreign_key "date_time_values", "date_time_forms"
+  add_foreign_key "float_values", "float_forms"
+  add_foreign_key "integer_values", "integer_forms"
+  add_foreign_key "multi_level_values", "multi_level_forms"
+  add_foreign_key "text_values", "text_forms"
   add_foreign_key "topics", "record_blocks"
 end
